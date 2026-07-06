@@ -15,6 +15,27 @@ provenance.
 - **`satellite.js`** — SGP4 propagation of TLEs → ECI position/velocity, plus `gstime` (GMST)
 - **Data**: CelesTrak GP API — snapshot `.tle` files committed in `data/` + optional live refresh
 
+## Working rules
+- **Consult the skills.** Before editing `components/`, `composables/`, or `lib/`, load
+  **`vue-best-practices`**; before planning or self-reviewing, load **`principal-engineer`**; for any
+  non-trivial/multi-file change, load **`planning`**. They encode the reactivity boundary, the
+  one-draw-call rule, and the catalog contract — don't reinvent them from the code.
+- **Verification before done (MANDATORY).** After any code edit, run `npm run build`; for a visual or
+  behavioral change, confirm it in the running app via `/start` (don't infer render behavior from
+  source). Never end a response that edited a file without verifying. Verify = confirm state, not
+  improve it — when asked to review, report; don't edit files that are already correct.
+- **The reactivity boundary is a contract.** Reactive Vue state is UI-only; per-frame SGP4/spin/sun
+  updates mutate `BufferAttribute`s / `shallowRef`'d objects inside `onBeforeRender` — never a reactive
+  prop read per frame. Keep the hot path allocation-free.
+- **The catalog is the source of truth for fields.** Adding a debris field is a `data/catalog.json`
+  entry + a `.tle` — never a component edit, never a hardcoded field id in a component.
+- **Comments explain WHY, never WHAT** — no change-narration ("replaces…", "plan §…"), no jargon in
+  code. Would it still make sense in two years?
+- **Self-update, not memory.** When a correction reveals a gap, update `.claude/` (CLAUDE.md or a
+  skill), never memory — one short paragraph per rule; when in doubt it earns its tokens, drop it.
+- **Token discipline.** Run checks once, not in a loop; read captured output rather than re-running.
+  Stop immediately when told to stop.
+
 ## Architecture — the core rule (declarative shell, imperative hot path)
 - **Declarative Tres** for the scene shell only: `<TresCanvas>`, `<TresPerspectiveCamera>`, cientos `<OrbitControls>`, ambient + a Sun `<TresDirectionalLight>` (repositioned per frame → real day/night terminator), and the Earth (`<TresMesh>`). The star field is the equirectangular `scene.background` (`public/textures/milkyway.jpg`), not a scene object.
 - **Imperative `THREE.Points` via `<primitive :object="…">`** for each debris field — one `BufferGeometry` / one draw call for thousands of fragments. ISS = a marker + orbit trail, also imperative via `<primitive>`.
