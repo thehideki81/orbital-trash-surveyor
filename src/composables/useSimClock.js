@@ -95,7 +95,11 @@ function setDataDate(date) {
 }
 
 // User scrubbed the time-of-day slider: set the clock to that Helsinki time on the reference date.
+// Auto-rotate and a manual scrub are mutually exclusive drivers of the same clock — while
+// auto-rotate advances simTime every frame it would immediately stomp the scrubbed value, so a
+// manual scrub hands clock control back to the user by stopping the auto-advance.
 function setDayMinutes(minutes) {
+  state.autoRotate = false
   state.dayMinutes = minutes
   simTime = helsinkiDateAt(referenceDate, minutes)
 }
