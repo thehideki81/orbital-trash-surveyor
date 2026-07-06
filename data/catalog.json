@@ -1,0 +1,53 @@
+[
+  {
+    "id": "iss",
+    "label": "ISS",
+    "file": "iss.tle",
+    "liveUrl": "https://celestrak.org/NORAD/elements/gp.php?CATNR=25544&FORMAT=tle",
+    "render": "marker",
+    "color": "#4ea1ff",
+    "size": 6,
+    "trail": true,
+    "enabled": true
+  },
+  {
+    "id": "cosmos-2251",
+    "label": "Cosmos 2251 debris",
+    "file": "cosmos-2251.tle",
+    "liveUrl": "https://celestrak.org/NORAD/elements/gp.php?GROUP=cosmos-2251-debris&FORMAT=tle",
+    "render": "points",
+    "color": "#ff5252",
+    "size": 1.6,
+    "enabled": true
+  },
+  {
+    "id": "iridium-33",
+    "label": "Iridium 33 debris",
+    "file": "iridium-33.tle",
+    "liveUrl": "https://celestrak.org/NORAD/elements/gp.php?GROUP=iridium-33-debris&FORMAT=tle",
+    "render": "points",
+    "color": "#ffb300",
+    "size": 1.6,
+    "enabled": true
+  },
+  {
+    "id": "fengyun-1c",
+    "label": "Fengyun-1C debris",
+    "file": "fengyun-1c.tle",
+    "liveUrl": "https://celestrak.org/NORAD/elements/gp.php?GROUP=fengyun-1c-debris&FORMAT=tle",
+    "render": "points",
+    "color": "#69f0ae",
+    "size": 1.4,
+    "enabled": true
+  },
+  {
+    "id": "analyst",
+    "label": "Unidentified objects",
+    "file": "analyst.tle",
+    "liveUrl": "https://celestrak.org/NORAD/elements/gp.php?GROUP=analyst&FORMAT=tle",
+    "render": "points",
+    "color": "#b388ff",
+    "size": 1.6,
+    "enabled": true
+  }
+]
