@@ -1,7 +1,7 @@
 // Coordinate frame + scale helpers shared by the Earth and every debris field.
 //
 // Scene scale: 1 unit = 1000 km. SGP4 returns positions in TEME km; we treat TEME as
-// ECI for this visual POC (see plan §11/§13) and only the Earth spins (by GMST).
+// ECI for this visual POC (see data/README.md) and only the Earth spins (by GMST).
 //
 // Axis mapping: SGP4/TEME is Z-up (north pole = +Z). Three.js is Y-up. We map
 //   scene.x =  eci.x / 1000

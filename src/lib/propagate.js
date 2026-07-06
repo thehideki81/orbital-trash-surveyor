@@ -1,5 +1,5 @@
 import { propagate } from 'satellite.js'
-import { eciToSceneInto } from './frames'
+import { eciToSceneInto, eciToScene } from './frames'
 
 // Propagate every satrec to `date` and write scene-space XYZ into a preallocated
 // Float32Array (3 floats per object). Allocation-free on the hot path: no per-frame
@@ -42,5 +42,5 @@ export function positionOf(record, date) {
   }
   const p = pv && pv.position
   if (!p || !Number.isFinite(p.x) || !Number.isFinite(p.y) || !Number.isFinite(p.z)) return null
-  return [p.x / 1000, p.z / 1000, -p.y / 1000]
+  return eciToScene(p)
 }

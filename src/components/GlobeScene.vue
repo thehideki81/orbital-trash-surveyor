@@ -14,7 +14,7 @@ import { sunSceneDirection } from '../lib/sun'
 
 // GlobeScene owns the single render loop: advance the sim clock, spin the Earth by GMST, and
 // update each visible debris field. All per-frame work here is imperative — no reactive props
-// are written in the hot path (plan §7).
+// are written in the hot path.
 
 const clock = useSimClock()
 const earth = shallowRef(null)

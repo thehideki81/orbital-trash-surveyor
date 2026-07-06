@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 // The simulation clock.
 //  - `state.warp` / `state.autoRotate` / `state.dayMinutes` / `state.dateLabel` are REACTIVE (UI).
 //  - `simTime` and `referenceDate` are imperative Dates; `simTime` changes every frame, so it is
-//    kept OUT of reactive state (per-frame reactivity would be a perf hazard, plan §7).
+//    kept OUT of reactive state (per-frame reactivity would be a perf hazard).
 //
 // The DATE is anchored to the source data (the TLE epoch, set via setDataDate) so the Sun and
 // SGP4 propagation match the data rather than the wall clock. The time-of-day is expressed in
